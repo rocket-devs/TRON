@@ -1,3 +1,4 @@
+// swift-tools-version:5.0
 // Package.swift
 //
 // Copyright (c) 2015–present MLSDev (http://mlsdev.org/)
@@ -24,9 +25,17 @@ import PackageDescription
 
 let package = Package(
   name: "TRON",
+  products: [
+    .library(name: "TRON", targets: ["TRON"]),
+  ],
   dependencies: [
-    .Package(url: "https://github.com/Alamofire/Alamofire.git", majorVersion: 4),
-    .Package(url: "https://github.com/SwiftyJSON/SwiftyJSON.git", majorVersion: 3),
-    .Package(url: "https://github.com/ReactiveX/RxSwift.git", majorVersion: 4)
+    .package(url: "https://github.com/Alamofire/Alamofire.git", .upToNextMajor(from: "4.0.0")),
+    .package(url: "https://github.com/SwiftyJSON/SwiftyJSON.git", .upToNextMajor(from:  "5.0.0")),
+    .package(url: "https://github.com/ReactiveX/RxSwift.git", .upToNextMajor(from:  "4.0.0"))
+  ],
+  targets: [
+    .target(
+      name: "TRON", dependencies: ["Alamofire", "RxSwift", "SwiftyJSON"], path: "Source"
+   )
   ]
 )
